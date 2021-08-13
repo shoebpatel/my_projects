@@ -1,0 +1,4 @@
+Command to run Elastic Serach = cd ./bin/elasticsearch
+
+Command to run Kabana = cd ./bin/kibana
+

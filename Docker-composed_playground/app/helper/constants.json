@@ -1,0 +1,5 @@
+{
+    "BASE_URL_V1":"/api/private",
+    "RESOURCE_URL": "http://localhost:3000/api",
+    "RESOURCE_URL_PRIVATE": "http://localhost:3000/api/private"
+}

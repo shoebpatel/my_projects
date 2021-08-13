@@ -1,0 +1,7 @@
+{
+    "DATABASE_NAME": "MyProject",
+    "DATABASE_USER_NAME": "root",
+    "DATABASE_PASSWORD": "password", 
+    "dialect": "mysql",
+    "host": "localhost"
+}

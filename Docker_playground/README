@@ -1,0 +1,12 @@
+docker build -t nodeApp .
+docker run  -p 8080:9090  nodeApp
+
+IF
+  index.js -> Running on 9999     | Here, 9999 is running the app in docker process   
+  Dockerfile -> Exposing 9090     | but docker is exposing 9090(no app is running on 9090)
+  docker run  -p 8080:9090        | & 8080 is binding to port 9090 which is not running the app
+
+  that is why: 
+              9999 -> app
+              9090 -> undefined
+              8080 -> undefined

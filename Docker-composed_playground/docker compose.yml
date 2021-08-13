@@ -1,0 +1,48 @@
+version: "3"
+services:
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_HOST: localhost
+      MYSQL_DATABASE: MyProject
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - "3307:3306"
+    expose:
+      - 3307
+    volumes:
+      - /var/lib/docker/volumes/206ac2bd2e7a6eb276711f327031edd915b98520022c591cd207ba6028fda4de/_data
+      - ./mysql/migrations:/docker-entrypoint-initdb.d
+    restart: unless-stopped
+
+  nodeapp1:
+    image: auth
+    environment:
+      NODE_ENV: development
+      PORT: 3000
+    ports:
+        - "1111:1111"
+  # web:
+  #   build:
+  #     context: app
+  #     dockerfile: ../Dockerfile
+  #   volumes:
+  #     - ./:/web
+  #   ports:
+  #     - "3000:3000"
+  #   environment:
+  #     NODE_ENV: development
+  #     PORT: 3000
+    links:
+      - mysql:mysql
+    depends_on:
+      - mysql
+    expose:
+      - 3000
+    command: ["./wait-for-it.sh", "mysql:3307"]
+
+# FROM node:12
+# WORKDIR /home/node/app
+# COPY app /home/node/app
+# RUN npm install
+# CMD npm run start

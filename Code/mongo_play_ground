@@ -1,0 +1,69 @@
+db.inventory.insertOne({  
+    "Value" : {
+        "Info" : [
+            {
+                "title" : "Call",
+                "type" : "phone",
+                "phone" : [ 
+                    "9007014708"
+                ],
+                "image" : "https://s3-ap-southeast-1.amazonaws.com/consumer-icons/servify/about_us/call_us.png"
+            }, 
+            {
+                "title" : "Email",
+                "type" : "email",
+                "email" : [ 
+                    "servicehead@macintelgroup.co.in"
+                ],
+                "image" : "https://s3-ap-southeast-1.amazonaws.com/consumer-icons/servify/about_us/email_us.png"
+            }, 
+            {
+                "title" : "Connect on Facebook",
+                "type" : "link",
+                "link" : "true",
+                "image" : "https://s3-ap-southeast-1.amazonaws.com/consumer-icons/servify/about_us/facebook.png"
+            }, 
+            {
+                "title" : "Connect on Twitter",
+                "type" : "link",
+                "link" : "https://twitter.com/servifyin",
+                "image" : "https://s3-ap-southeast-1.amazonaws.com/consumer-icons/servify/about_us/twitter.png"
+            }, 
+            {
+                "title" : "Connect on LinkedIn",
+                "type" : "link",
+                "link" : "https://www.linkedin.com/company/servify-",
+                "image" : "https://s3-ap-southeast-1.amazonaws.com/consumer-icons/servify/about_us/linked_in.png"
+            }, 
+            {
+                "title" : "Terms & Condition",
+                "type" : "link",
+                "link" : "https://macintelgroup.co.in/privacy-policy/",
+                "image" : "https://s3-ap-southeast-1.amazonaws.com/consumer-icons/servify/about_us/terms_conditions.png"
+            }, 
+            {
+                "title" : "Privacy Policy",
+                "type" : "link",
+                "link" : "https://macintelgroup.co.in/privacy-policy/",
+                "image" : "https://s3-ap-southeast-1.amazonaws.com/consumer-icons/servify/about_us/privacy_policy.png"
+            }
+        ]
+    }
+});
+
+db.inventory.updateOne( { "Value.Info.0.title" : "Call" }, 
+    { $set: { "Value.Info.1.email" : ["Shoeb"] }  <--- for existing as well as when adding new key
+    });
+
+db.inventory.find({ "Value.Info" : {
+                "title" : "Call",
+                "type" : "phone",
+                "phone" : [ 
+                    "9007014708"
+                ],
+                "image" : "https://s3-ap-southeast-1.amazonaws.com/consumer-icons/servify/about_us/call_us.png"
+            }});
+
+db.inventory.findOne({"Value.Info.0.title" : "Call"});
+
+db.inventory.find({});

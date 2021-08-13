@@ -1,0 +1,25 @@
+version: '3.8'
+
+services: 
+  mysqldb:
+    image: mysql
+    restart: always
+    # env_file: ./.env
+    environment:
+      MYSQL_HOST: localhost
+      MYSQL_DATABASE: MyProject
+      MYSQL_ROOT: root
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - "3306:3306"
+    volumes:
+      - /var/lib/docker/volumes/206ac2bd2e7a6eb276711f327031edd915b98520022c591cd207ba6028fda4de/_data
+      - ./mysql/migrations:/docker-entrypoint-initdb.d
+  app:
+    image: auth
+    depends_on:
+      - mysqldb
+    ports:
+      - "5000:5000"
+    stdin_open: true
+    tty: true
